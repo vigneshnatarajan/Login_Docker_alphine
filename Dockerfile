@@ -1,25 +1,16 @@
-FROM alpine:3.7
+FROM ubuntu:Latest
 
 MAINTAINER vigneshnatarajan <vigneshnatarajan01@gmail.com>
 
 WORKDIR /usr/apps/hello-docker/
 
-RUN apk add --update bash
+RUN apt-get -y update
 
-#RUN apk add nodejs
+RUN apt-get install -y nodejs
 
-COPY common/stack-fix.c /lib/
+RUN apt-get install -y npm
 
-RUN set -ex \
-    && apk add --no-cache  --virtual .build-deps build-base \
-    && gcc  -shared -fPIC /lib/stack-fix.c -o /lib/stack-fix.so \
-    && apk del .build-deps
-
-ENV LD_PRELOAD /lib/stack-fix.so
-
-RUN apk add --update nodejs nodejs-npm
-
-#RUN ln -s /usr/bin/nodejs /usr/bin/node
+#RUN ln -s /usr/bin/nodejs /usr/bin/node........;;;;;
 
 RUN npm install -g http-server
 
