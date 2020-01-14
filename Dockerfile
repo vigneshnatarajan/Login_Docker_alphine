@@ -1,16 +1,16 @@
-FROM ubuntu:Latest
+FROM alpine:3.7
 
 MAINTAINER vigneshnatarajan <vigneshnatarajan01@gmail.com>
 
 WORKDIR /usr/apps/hello-docker/
 
-RUN apt-get -y update
+RUN apk add --update bash
 
-RUN apt-get install -y nodejs
+#RUN apk add nodejs
 
-RUN apt-get install -y npm
+RUN apk add --update nodejs nodejs-npm
 
-#RUN ln -s /usr/bin/nodejs /usr/bin/node........;;;;;
+#RUN ln -s /usr/bin/nodejs /usr/bin/node
 
 RUN npm install -g http-server
 
